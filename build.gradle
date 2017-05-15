@@ -1,0 +1,60 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '2.0.0'
+    id 'maven'
+    id 'application'
+    id "org.sonarqube" version "2.2.1"
+    id "jacoco"
+    id 'com.github.ben-manes.versions' version '0.13.0'
+}
+
+group 'brach.stefan'
+version '1.0'
+
+
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+project.ext {
+    dropwizardVersion = '1.1.0'
+}
+
+dependencies {
+    compile(
+            'io.dropwizard:dropwizard-core:' + dropwizardVersion,
+            'io.dropwizard:dropwizard-testing:' + dropwizardVersion,
+            'commons-io:commons-io:2.5',
+            'com.google.inject:guice:4.1.0',
+            'org.rauschig:jarchivelib:0.7.1',
+            'com.koloboke:koloboke-api-jdk8:1.0.0',
+            'com.koloboke:koloboke-impl-jdk8:1.0.0',
+    )
+}
+
+mainClassName = 'brach.stefan.ngram.NgramApplication'
+
+// Configure the shadow jar task
+shadowJar {
+    mergeServiceFiles()
+    exclude 'META-INF/*.DSA'
+    exclude 'META-INF/*.RSA'
+    archiveName = "ngram.${extension}"
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+}

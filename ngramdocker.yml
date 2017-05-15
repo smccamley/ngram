@@ -1,0 +1,17 @@
+server:
+  rootPath: /api/*
+  applicationContextPath: /
+  applicationConnectors:
+  - type: http
+    port: 80
+    
+logging:
+  loggers:
+    brach.stefan.ngram: ERROR
+  appenders:
+  - type: console
+    queueSize: 2048
+    
+settings:
+  downloadDir: "/opt/dropwizard/download/"
+  production: true
