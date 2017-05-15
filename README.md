@@ -11,7 +11,7 @@ You will get the response
 ```
 {
   "count": 927838975,
-  "relative": 4.762315882559723e-17,
+  "probability": 4.762315882559723e-17,
   "year": "2008"
 }
 ```

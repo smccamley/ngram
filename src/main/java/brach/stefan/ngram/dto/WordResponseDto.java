@@ -5,7 +5,7 @@ package brach.stefan.ngram.dto;
  */
 public class WordResponseDto {
     public long count;
-    public double relative;
+    public double probability;
     public String year;
 
     public long getCount() {
@@ -16,12 +16,12 @@ public class WordResponseDto {
         this.count = count;
     }
 
-    public double getRelative() {
-        return relative;
+    public double getProbability() {
+        return probability;
     }
 
-    public void setRelative(double relative) {
-        this.relative = relative;
+    public void setProbability(double probability) {
+        this.probability = probability;
     }
 
     public String getYear() {
