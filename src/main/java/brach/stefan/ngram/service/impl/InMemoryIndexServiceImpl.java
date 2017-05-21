@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Map;
 import java.util.stream.Stream;
+import java.util.ArrayList;
 
 /**
  * Service implementation that creates in memory hashmaps from index files that are either stored in the resource
@@ -135,11 +136,48 @@ public class InMemoryIndexServiceImpl implements InMemoryIndexService {
         } else {
             char character = Character.toLowerCase(str.charAt(0));
             if (((character >= '0' && character <= '9') || character >= 'a' && character <= 'z')) {
-                return numberOrLetterMaps.get(character).getInt(str);
+                int count = 0;
+                ArrayList<String> words = getPermutations(str);
+
+                //the = [the, The, THe, THE, tHE, thE]
+
+                 
+                for(int i = 0, n = (int)words.size(); i < n; i++){
+                        count += numberOrLetterMaps
+                            .get(character)
+                            .getInt(words.get(i));
+                }
+                    
+                //return numberOrLetterMaps.get(character).getInt(str);
+                return count;
+                
             } else {
                 return specialCharacterMap.getLong(str);
             }
         }
+    }
+
+    private ArrayList<String> getPermutations(String text) {
+
+        ArrayList<String> permutations = new ArrayList<String>();
+        
+        char[] chars = text.toCharArray();
+        for (int i = 0, n = (int) Math.pow(2, chars.length); i < n; i++) {
+            char[] permutation = new char[chars.length];
+            for (int j =0; j < chars.length; j++) {
+                permutation[j] = (isBitSet(i, j)) ? Character.toUpperCase(chars[j]) : chars[j];
+            }
+            String str = "";
+            for (Character c : permutation){
+                str += c.toString();
+            }
+            permutations.add(str);
+        }
+        return permutations;
+    }
+
+    boolean isBitSet(int n, int offset) {
+        return (n >> offset & 1) != 0;
     }
 
     /**
