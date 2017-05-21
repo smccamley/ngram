@@ -37,6 +37,7 @@ public class WordResource {
         wordResponseDto.setCount(count);
         wordResponseDto.setYear(dataService.getYear());
         wordResponseDto.setProbability(count / dataService.getTotalCount());
+        wordResponseDto.setWord(wordRequestDto.getWord());
         return Response.ok(wordResponseDto).build();
     }
 }

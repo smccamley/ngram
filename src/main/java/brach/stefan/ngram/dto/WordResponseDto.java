@@ -7,6 +7,7 @@ public class WordResponseDto {
     public long count;
     public double probability;
     public String year;
+    public String word;
 
     public long getCount() {
         return count;
@@ -14,6 +15,14 @@ public class WordResponseDto {
 
     public void setCount(long count) {
         this.count = count;
+    }
+
+    public String getWord() {
+        return word;
+    }
+
+    public void setWord(String word) {
+        this.word = word;
     }
 
     public double getProbability() {
