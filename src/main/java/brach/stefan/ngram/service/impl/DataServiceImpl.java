@@ -14,8 +14,9 @@ import java.util.List;
  * Service implementation that contains all relevant data links to create index files and in memory hashmaps for 2008.
  */
 public class DataServiceImpl implements DataService {
-    private final static String YEAR = "2008";
-    private final static Double TOTAL_COUNT = Double.parseDouble("19482936409108811006206272");
+    private final static String YEAR = "2000";
+                                                                                //77,781,088,046 //19482936409108811006206272
+    private final static Double TOTAL_COUNT = Double.parseDouble("61329767813");
     private final static String GOOGLE_ADDRESS_BASE = "http://storage.googleapis.com/books/ngrams/books/";
     private final static String GOOGLE_ADDRESS_ENDING = "googlebooks-eng-all-1gram-20120701-";
     private final static String NUMBERS = "0 1 2 3 4 5 6 7 8 9";
